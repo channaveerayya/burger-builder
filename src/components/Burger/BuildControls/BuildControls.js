@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styles from './BuildControls.module.css'
 import BuildControl from './BuildControl/BuildControl'
+import { resolvePreset } from "@babel/core";
 
 const controls = [
   { label: "Salad", type: "salad" },
@@ -14,7 +15,13 @@ const BuildControls = props => {
   return (
     <div className={styles.BuildControls}>
       {controls.map(ctrl => (
-        <BuildControl key={ctrl.label} label={ctrl.label} />
+        <BuildControl
+          key={ctrl.label}
+          label={ctrl.label}
+          added={() => props.ingredientAdded(ctrl.type)}
+          removed={() => { props.ingredientRemoved(ctrl.type) }}
+          disabled={props.disabled[ctrl.type]}
+        />
       ))}
     </div>
   );
