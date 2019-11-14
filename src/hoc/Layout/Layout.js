@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import Aux from "../../hoc/Aux-Hoc";
+import Aux from "../AuxHoc/Aux-Hoc";
 import styles from "./layout.module.css";
-import SideDrawer from "../Navigation/SideDrawer/SideDrawer";
-import Toolbar from "../Navigation/Toolbar/Toolbar";
+import SideDrawer from "../../components/Navigation/SideDrawer/SideDrawer";
+import Toolbar from "../../components/Navigation/Toolbar/Toolbar";
 class Layout extends Component {
   state = {
     showSideDrawer: true
