@@ -4,6 +4,7 @@ import styles from "./ContactData.module.css";
 import axios from "../../../axios-orders";
 import Spinner from "../../../components/UI/Spinner/Spinner";
 import Input from '../../../components/UI/Input/Input'
+import Modal from '../../../components/UI/Modal/Modal'
 class ContactData extends Component {
   state = {
     orderForm: {
@@ -86,7 +87,8 @@ class ContactData extends Component {
       }
     },
     formIsValid: false,
-    loading: false
+    loading: false,
+    showModal: true
   };
   checkValidity(value, rules) {
     let isValid = true;
@@ -151,6 +153,10 @@ class ContactData extends Component {
     }
     this.setState({ orderForm: updatedOrderForm, formIsValid: formIsValid });
   };
+  closeModalHandler = () => {
+    this.setState({ showModal: !this.state.showModal });
+    this.props.history.goBack();
+  };
   render() {
     const formElementArray = [];
     for (let key in this.state.orderForm) {
@@ -182,10 +188,12 @@ class ContactData extends Component {
       form = <Spinner />;
     }
     return (
-      <div className={styles.ContactData}>
-        <h4>Enter your contact Data</h4>
-        {form}
-      </div>
+      <Modal show={this.state.showModal} modalClosed={this.closeModalHandler}>
+        <div className={styles.ContactData}>
+          <h4>Enter your contact Data</h4>
+          {form}
+        </div>
+      </Modal>
     );
   }
 }
