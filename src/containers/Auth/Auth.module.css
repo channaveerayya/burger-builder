@@ -13,3 +13,9 @@
     margin: 15% auto;
   }
 }
+
+.ErrorMessage {
+    color: red;
+    font-weight: bold;
+    font-size: 33px;
+}
